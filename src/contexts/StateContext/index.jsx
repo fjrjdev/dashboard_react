@@ -10,11 +10,11 @@ export const StatesProvider = ({ children }) => {
   const [dataByStore, setDataByStore] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getAllRequest = (data) => {
+  const getAllRequest = () => {
     setLoading(true);
     api
       .get("transactions/")
-      .then((response) => console.log(response.data))
+      .then((response) => setData(response.data.results))
       .finally(() => setLoading(false));
   };
 
@@ -25,12 +25,14 @@ export const StatesProvider = ({ children }) => {
       .then((response) => console.log(response.data))
       .finally(() => setLoading(false));
   };
+  console.log(file);
   const uploadFile = (file) => {
-    console.log(file);
+    let formData = new FormData();
+    formData.append("file", file[0]);
     setLoading(true);
     api
-      .post(`/transactions/upload/`)
-      .then((response) => console.log(response.data))
+      .post(`/transactions/upload/`, formData)
+      .then((response) => getAllRequest())
       .finally(() => setLoading(false));
   };
   return (

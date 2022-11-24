@@ -15,7 +15,7 @@ import TabPanel from "../TabsPanel";
 import { StatesContext } from "../../contexts/StateContext";
 
 export default function Content() {
-  const { tab, data } = React.useContext(StatesContext);
+  const { tab, data, uploadFile } = React.useContext(StatesContext);
   return (
     <Paper sx={{ maxWidth: 1800, margin: "auto", overflow: "hidden" }}>
       <AppBar
@@ -41,7 +41,11 @@ export default function Content() {
               />
             </Grid>
             <Grid item>
-              <FileInput variant="contained" sx={{ mr: 1 }}>
+              <FileInput
+                uploadFile={uploadFile}
+                variant="contained"
+                sx={{ mr: 1 }}
+              >
                 Add user
               </FileInput>
               <Tooltip title="Reload">
