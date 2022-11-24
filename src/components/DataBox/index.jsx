@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "id", headerName: "ID", width: 30 },
   {
     field: "transaction",
     headerName: "Transaction",
@@ -12,8 +12,7 @@ const columns = [
   {
     field: "value",
     headerName: "Value",
-    type: "number",
-    width: 150,
+    width: 90,
   },
   {
     field: "date",
@@ -68,9 +67,9 @@ const DataBox = () => {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
-        checkboxSelection
+        // checkboxSelection
         disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
+        // experimentalFeatures={{ newEditingApi: true }}
       />
     </Box>
   );

@@ -14,11 +14,16 @@ import Tabs from "@mui/material/Tabs";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import { StatesContext } from "../../contexts/StateContext";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
 function Header(props) {
+  const { tab, setTab } = React.useContext(StatesContext);
   const { onDrawerToggle } = props;
+  const handleChange = (event, newValue) => {
+    setTab(newValue);
+  };
 
   return (
     <React.Fragment>
