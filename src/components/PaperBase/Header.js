@@ -113,9 +113,9 @@ function Header(props) {
         elevation={0}
         sx={{ zIndex: 0 }}
       >
-        <Tabs value={0} textColor="inherit">
-          <Tab label="Transaction" />
-          <Tab label="Users" />
+        <Tabs value={tab} onChange={handleChange} textColor="inherit">
+          <Tab label="All Transactions" value={0} />
+          <Tab label="Transactions by Store" value={1} />
         </Tabs>
       </AppBar>
     </React.Fragment>
