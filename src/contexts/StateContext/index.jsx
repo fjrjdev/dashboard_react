@@ -4,9 +4,10 @@ import api from "../../services";
 export const StatesContext = createContext();
 
 export const StatesProvider = ({ children }) => {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(null);
   const [tab, setTab] = useState(0);
   const [data, setData] = useState([]);
+  const [store, setStore] = useState("");
   const [dataByStore, setDataByStore] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -21,12 +22,11 @@ export const StatesProvider = ({ children }) => {
       .then((response) => setData(response.data.results))
       .finally(() => setLoading(false));
   };
-
   const getByStoreRquest = (store) => {
     setLoading(true);
     api
       .get(`transactions/stores/${store}/`)
-      .then((response) => console.log(response.data))
+      .then((response) => setDataByStore(response.data))
       .finally(() => setLoading(false));
   };
   const uploadFile = (file) => {
@@ -52,6 +52,8 @@ export const StatesProvider = ({ children }) => {
         data,
         setData,
         dataByStore,
+        store,
+        setStore,
       }}
     >
       {children}
