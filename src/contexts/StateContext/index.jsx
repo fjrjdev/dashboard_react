@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import api from "../../services";
 
 export const StatesContext = createContext();
@@ -9,6 +9,10 @@ export const StatesProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [dataByStore, setDataByStore] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    getAllRequest();
+  }, []);
 
   const getAllRequest = () => {
     setLoading(true);
@@ -25,7 +29,6 @@ export const StatesProvider = ({ children }) => {
       .then((response) => console.log(response.data))
       .finally(() => setLoading(false));
   };
-  console.log(file);
   const uploadFile = (file) => {
     let formData = new FormData();
     formData.append("file", file[0]);
